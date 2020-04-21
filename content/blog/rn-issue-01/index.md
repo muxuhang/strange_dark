@@ -1,7 +1,7 @@
 ---
-title: "Manifest merger failed : Attribute application@appComponentFactory"
+title: "AndroidX支持"
 date: "2020-04-21"
-description: "AndroidX支持 react-native"
+description: "Manifest merger failed : Attribute application@appComponentFactory"
 ---
 解决方法：在grade.properties添加
 ```javascript
