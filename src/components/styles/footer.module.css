@@ -1,0 +1,15 @@
+.footer{
+  width: 100%;
+  background-color: #666;
+}
+.container{
+  padding: 15px;
+  margin: auto;
+  text-align: center;
+}
+.copyname{
+  font-size: 12px;
+  text-align: center;
+  color: #eee;
+  text-decoration: none;
+}
