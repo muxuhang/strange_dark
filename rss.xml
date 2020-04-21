@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>http://www.mxhing.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 21 Apr 2020 08:31:19 GMT</lastBuildDate><item><title><![CDATA[RN header删除下划线]]></title><description><![CDATA[android:  ios:]]></description><link>http://www.mxhing.com/rn-effect-02/</link><guid isPermaLink="false">http://www.mxhing.com/rn-effect-02/</guid><pubDate>Tue, 21 Apr 2020 07:32:00 GMT</pubDate><content:encoded>&lt;p&gt;android: &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;  headerStyle&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;elevation&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;ios:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;  headerStyle&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;borderBottomWidth&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[RN 扫码功能]]></title><description><![CDATA[安装 使用 Bug 1 ：Could not resolve project :react-native-camera. on Android 解决方法：
+    在文件android/app/build.gradle中的 defaultConfig…]]></description><link>http://www.mxhing.com/rn-effect-03/</link><guid isPermaLink="false">http://www.mxhing.com/rn-effect-03/</guid><pubDate>Tue, 21 Apr 2020 07:32:00 GMT</pubDate><content:encoded>&lt;h3&gt;安装&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;npm install react&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;native&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;camera —save
+react&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;native link react&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;native&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;camera
+
+npm install react&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;native&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;qrcode&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;scanner react&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;native&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;permissions &lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;save
+react&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;native link react&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;native&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;qrcode&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;scanner
+react&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;native link react&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;native&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;permissions&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;使用&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; QRCodeScanner &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &quot;react&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;native&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;qrcode&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;scanner”&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ScannerScreen&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Component&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;ScannerScreenProps&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+  * 扫描成功
+  */&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;onSuccess&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Ï
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tron&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Screen style&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;ROOT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; preset&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;scroll&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;QRCodeScanner
+          showMarker&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+          onRead&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;onSuccess&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;QRCodeScanner&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;Screen&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;Bug 1 ：Could not resolve project :react-native-camera. on Android&lt;/h5&gt;
+&lt;p&gt;解决方法：
+在文件android/app/build.gradle中的 defaultConfig中添加
+missingDimensionStrategy ‘react-native-camera’, ‘general’
+android添加权限&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;permission android&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;name&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;android.permission.VIBRATE&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;ios添加权限 info.plis&lt;/h5&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;m&quot;&gt;&lt;pre class=&quot;language-m&quot;&gt;&lt;code class=&quot;language-m&quot;&gt;&amp;lt;key&amp;gt;NSCameraUsageDescription&amp;lt;/key&amp;gt;
+&amp;lt;string&amp;gt;Your message to user when the camera is accessed for the first time&amp;lt;/string&amp;gt;
+&amp;lt;!-- Include this only if you are planning to use the camera roll --&amp;gt;
+&amp;lt;key&amp;gt;NSPhotoLibraryUsageDescription&amp;lt;/key&amp;gt;
+&amp;lt;string&amp;gt;Your message to user when the photo library is accessed for the first time&amp;lt;/string&amp;gt;
+
+&amp;lt;!-- Include this only if you are planning to use the microphone for video recording --&amp;gt;
+&amp;lt;key&amp;gt;NSMicrophoneUsageDescription&amp;lt;/key&amp;gt;
+&amp;lt;string&amp;gt;Your message to user when the microsphone is accessed for the first time&amp;lt;/string&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[react-native 插件]]></title><description><![CDATA[常用插件 扫码功能 react-native-qrcode-scanner 评价：简单实用、功能强大 生成二维码 react-native-qrcode 评价：简单实用 热更新 react-native-auto-updater 评价：尚未使用 轮播图 react-native…]]></description><link>http://www.mxhing.com/rn-plug-in/</link><guid isPermaLink="false">http://www.mxhing.com/rn-plug-in/</guid><pubDate>Tue, 21 Apr 2020 07:30:00 GMT</pubDate><content:encoded>&lt;h2&gt;常用插件&lt;/h2&gt;
+&lt;h3&gt;扫码功能&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/moaazsidat/react-native-qrcode-scanner&quot;&gt;react-native-qrcode-scanner&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;评价：简单实用、功能强大&lt;/p&gt;
+&lt;h3&gt;生成二维码&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/cssivision/react-native-qrcode&quot;&gt;react-native-qrcode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;评价：简单实用&lt;/p&gt;
+&lt;h3&gt;热更新&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/redbooth/react-native-auto-updater&quot;&gt;react-native-auto-updater&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;评价：尚未使用&lt;/p&gt;
+&lt;h3&gt;轮播图&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/leecade/react-native-swiper&quot;&gt;react-native-swiper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;评价：简单实用、可实现效果较少&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/archriss/react-native-snap-carousel&quot;&gt;react-native-snap-carousel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;评价：功能强大，效果多样漂亮、但性能不是太好&lt;/p&gt;
+&lt;h3&gt;图表&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/indiespirit/react-native-chart-kit&quot;&gt;react-native-chart-kit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/wuxudong/react-native-charts-wrapper&quot;&gt;react-native-charts-wrapper&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;优化效果&lt;/h2&gt;
+&lt;h3&gt;磨砂图片&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/react-native-community/react-native-blur&quot;&gt;react-native-blur&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;背景渐变色&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/react-native-community/react-native-linear-gradient&quot;&gt;react-native-linear-gradient&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[RN页面切换效果]]></title><link>http://www.mxhing.com/rn-effect-01/</link><guid isPermaLink="false">http://www.mxhing.com/rn-effect-01/</guid><pubDate>Tue, 21 Apr 2020 03:02:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// javascript&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//设置android动画与ios一致，为左右滑动效果&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; StackViewStyleInterpolator &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;react-navigation-stack/src/views/StackView/StackViewStyleInterpolator&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; AppNavigator &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;createStackNavigator&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  Page&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; screen&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Page &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;    
+  initialRouteName&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Page&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  headerMode&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;none&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  mode&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;card&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token function-variable function&quot;&gt;transitionConfig&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    screenInterpolator&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; StackViewStyleInterpolator&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;forHorizontal
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[AndroidX支持]]></title><description><![CDATA[解决方法：在grade.properties添加 参考地址：
+https://github.com/material-components/material-components-android/issues/193]]></description><link>http://www.mxhing.com/rn-issue-01/</link><guid isPermaLink="false">http://www.mxhing.com/rn-issue-01/</guid><pubDate>Tue, 21 Apr 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;解决方法：在grade.properties添加&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// javascript&lt;/span&gt;
+android&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;useAndroidX&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+android&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;enableJetifier&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;参考地址：
+&lt;a href=&quot;https://github.com/material-components/material-components-android/issues/193&quot;&gt;https://github.com/material-components/material-components-android/issues/193&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
