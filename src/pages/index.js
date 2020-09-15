@@ -1,14 +1,15 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Link, graphql } from "gatsby"
-
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
+import styles from './index.module.css'
+
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
+  const [list, setList] = useState([])
   if (typeof window !== 'undefined') {
     console.log(document);
     var hm = document.createElement("script");
@@ -16,38 +17,111 @@ const BlogIndex = ({ data, location }) => {
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   }
-  
+  const [page, setPage] = useState(0)
+  const length = 5
+  useEffect(() => {
+    setList(posts.slice(page * length, (page + 1) * length))
+  }, [page])
+  const renderPage = () => {
+    console.log('111', page, list);
+    return (
+      <>
+        {list.map(({ node }) => {
+          const title = node.frontmatter.title || node.fields.slug
+          return (
+            <article key={node.fields.slug}>
+              <header>
+                <h3
+                  style={{
+                    marginBottom: rhythm(1 / 4),
+                  }}
+                >
+                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                    {title}
+                  </Link>
+                </h3>
+                <small>{node.frontmatter.date}</small>
+              </header>
+              <section>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: node.frontmatter.description || node.excerpt,
+                  }}
+                />
+              </section>
+            </article>
+          )
+        })}
+      </>
+    )
 
+  }
+
+  const renderPaging = () => {
+    let totalPage = Math.ceil(posts.length / length)
+    let arr = []
+    for (let i = 0; i < totalPage; i++) {
+      arr.push(i)
+    }
+    return (
+      <div className={styles.pagingBox}>
+        <div
+          onClick={() => setPage(0)}
+          className={styles.pagingItem}>首页</div>
+        <div
+          onClick={() => {
+            if (page <= 0) return
+            setPage(page - 1)
+          }}
+          className={styles.pagingItem}>上一页</div>
+        {arr.map((item, index) => {
+          if (index <= 5) {
+            return (
+              <div
+                key={index}
+                className={`${styles.pagingItem} ${page === index && styles.pagingActive}`}
+                onClick={() => setPage(index)}>
+                {index + 1}
+              </div>
+            )
+          } else if (totalPage - index < 3) {
+            return (
+              <div
+                key={index}
+                className={`${styles.pagingItem} ${page === index && styles.pagingActive}`}
+                onClick={() => setPage(index)}>
+                {index + 1}
+              </div>
+            )
+          } else if (page === index) {
+            return (
+              <div
+                key={index}
+                className={`${styles.pagingItem} ${page === index && styles.pagingActive}`}
+                onClick={() => setPage(index)}>
+                {index + 1}
+              </div>
+            )
+          } else if (page+1===index||index===6) {
+            return <div style={{lineHeight:'2rem'}}>...</div>
+          } else {
+            return null
+          }
+        })}
+        <div
+          onClick={() => {
+            if (totalPage <= page + 1) return
+            setPage(page + 1)
+          }}
+          className={styles.pagingItem}>下一页</div>
+      </div>
+    )
+  }
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="Strange Dark ~" />
-      <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
-        return (
-          <article key={node.fields.slug}>
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </section>
-          </article>
-        )
-      })}
+      <SEO title="M ~" />
+      {renderPage()}
+      {renderPaging()}
     </Layout>
   )
 }

@@ -29,7 +29,7 @@ description: "微信小程序 固定钉 onPageScroll getSystemInfo windowWidth r
 ```
 
 #### wxml
-```wxml
+```html
   <view class="intro" style="{{scrollTop>200?'background:black;top:0;position:fixed':''}}"></view>
   <view style="height:2000px"></view>
 ```

@@ -1,0 +1,32 @@
+.headers{
+  width: 100%;
+  background-color: #333333;
+  color: #ffffff;
+}
+.container{
+  width: 100%;
+  max-width: 75rem;
+  margin: auto;
+  min-height: 5rem;
+  display: flex;
+  flex-direction: row;
+}
+.logo{
+  height: 4rem;
+  width: 4rem;
+  margin: .5rem;
+}
+.flex1{
+  flex: 1;
+}
+.menu{
+  display: flex;
+  flex-direction: row;
+}
+.menu a{
+  font-size: 1.3rem;
+  line-height: 3rem;
+  margin: 1rem;
+  text-decoration: none;
+  color: #ffffff;
+}

@@ -1,0 +1,25 @@
+
+.pagingBox{
+  display: flex;
+  flex-direction: row;
+  float: right;
+}
+.pagingItem{
+  color: #333333;
+  margin: .5rem .2rem;
+  border: 1px solid #007acc;
+  padding: 0 1rem;
+  border-radius: .2rem;
+  cursor: pointer;
+  color: #007acc;
+} 
+.pagingActive{
+  border: 1px solid #007acc;
+  background-color: #007acc;
+  color: #ffffff;
+}
+.pagingItem:hover{
+  border: 1px solid #007acc;
+  background-color: #007acc;
+  color: #ffffff;
+}

@@ -11,7 +11,7 @@ description: "首字母查询 微信小程序 index-list"
 ### 使用
 - 微信开发工具/详情/本地设置中，使用npm模块
 - 微信开发工具/工具，构建npm
-### wxml
+### html
 ```html
 <index-list list="{{cities}}" bindchoose="chooseCity"></index-list>
 ```
