@@ -1,0 +1,28 @@
+---
+title: css 文本超出换行
+date: "2020-09-15 14:50"
+description: "javascript 瀑布流"
+---
+#### 单行文本
+```css
+.box{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+```
+
+#### 多行文本
+```css
+.box{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin:0;
+  height: 3rem;
+  line-height: 1.5rem;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+```

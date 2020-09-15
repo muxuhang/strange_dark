@@ -18,3 +18,14 @@ export const AppNavigator = createStackNavigator({
   }),
 })
 ```
+#### react-navigation5
+```js
+//设置android动画与ios一致，为左右滑动效果
+import { CardStyleInterpolators } from "@react-navigation/stack"
+<Stack.Navigator
+    screenOptions={{
+        ...,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+    }}
+>
+```
