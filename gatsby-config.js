@@ -7,7 +7,7 @@ module.exports = {
       summary: ``,
     },
     description: ``,
-    siteUrl: `http://www.mxhing.com/`,
+    siteUrl: `http://www.cacti.cc/`,
     social: {
       twitter: `kylemathews`,
     },
@@ -77,6 +77,7 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    `@dream-bit-de/gatsby-plugin-better-page-tree`
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

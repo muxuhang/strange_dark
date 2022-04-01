@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
 import styles from './index.module.css'
+import { Input, Pagination, Select } from "antd"
 
 const BlogIndex = (props) => {
   const { data, location } = props
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
+  const directories = data.allDirectory.nodes
+  const [totalList, setTotalList] = useState([])
   const [list, setList] = useState([])
   if (typeof window !== 'undefined') {
     var hm = document.createElement("script");
@@ -17,25 +19,69 @@ const BlogIndex = (props) => {
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   }
-  const [page, setPage] = useState(0)
-  const length = 5
+  const [page, setPage] = useState(1)
+  const [search, setSearch] = useState('')
+  const pageSize = 7
   useEffect(() => {
-    console.log(props)
-    setList(posts.slice(page * length, (page + 1) * length))
-  }, [page])
+    const result = posts.filter(e => {
+      return e.node.frontmatter.title.search(search) >= 0 ||
+        e.node.frontmatter.description.search(search) >= 0
+    })
+    setTotalList(result)
+  }, [search])
+  const [classify, setClassify] = useState('')
+  useEffect(() => {
+    const result = posts.filter(e => {
+      return e.node.parent.relativeDirectory === classify || classify == ''
+    })
+    setTotalList(result)
+  }, [classify])
+  useEffect(() => {
+    const result = totalList.slice((page - 1) * pageSize, (page) * pageSize)
+    setList(result)
+  }, [page, totalList])
+  const renderSearch = () => {
+    return (
+      <div className={styles.search_box}>
+        <Input
+          style={{ width: '300px' }}
+          placeholder="搜索"
+          onKeyDown={e => {
+            console.log(e.target.value)
+            if (e.keyCode === 13) {
+              setSearch(e.target.value)
+            }
+            if (e.target.value === '') setSearch('')
+          }}
+        ></Input>
+        <Select
+          placeholder='分类'
+          value={classify}
+          style={{ marginLeft: 10, minWidth: 100 }}
+          onChange={(e) => setClassify(e)}>
+          <Select.Option value={''}>全部分类</Select.Option>
+          {directories.map((item, index) => (
+            <Select.Option value={item.name} key={index}>{item.name}</Select.Option>
+          ))}
+        </Select>
+        <div style={{ flex: 1 }}></div>
+        <Pagination current={page}
+          pageSize={pageSize}
+          total={totalList.length}
+          onChange={e => setPage(e)} />
+      </div>
+
+    )
+  }
   const renderPage = () => {
     return (
       <>
         {list.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
-            <article key={node.fields.slug}>
+            <article key={node.fields.slug} className={styles.list_item}>
               <header>
-                <h3
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
-                >
+                <h3>
                   <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
                     {title}
                   </Link>
@@ -56,84 +102,26 @@ const BlogIndex = (props) => {
     )
 
   }
-
-  const renderPaging = () => {
-    let totalPage = Math.ceil(posts.length / length)
-    console.log('totalPage', totalPage)
-    let arr = []
-    for (let i = 0; i < totalPage; i++) {
-      arr.push(i)
-    }
-    return (
-      <div className={styles.pagingBox}>
-        <div
-          onClick={() => setPage(0)}
-          className={styles.pagingItem}>首页</div>
-        <div
-          onClick={() => {
-            if (page <= 0) return
-            setPage(page - 1)
-          }}
-          className={styles.pagingItem}>上一页</div>
-        {arr.map((item, index) => {
-          if (index <= 5) {
-            return (
-              <div
-                key={index}
-                className={`${styles.pagingItem} ${page === index && styles.pagingActive}`}
-                onClick={() => setPage(index)}>
-                {index + 1}
-              </div>
-            )
-          } else if (totalPage - index < 3) {
-            return (
-              <div
-                key={index}
-                className={`${styles.pagingItem} ${page === index && styles.pagingActive}`}
-                onClick={() => setPage(index)}>
-                {index + 1}
-              </div>
-            )
-          } else if (page === index) {
-            return (
-              <div
-                key={index}
-                className={`${styles.pagingItem} ${page === index && styles.pagingActive}`}
-                onClick={() => setPage(index)}>
-                {index + 1}
-              </div>
-            )
-          } else if (page + 1 === index || index === 6) {
-            return <div style={{ lineHeight: '2rem' }}>...</div>
-          } else {
-            return null
-          }
-        })}
-        <div
-          onClick={() => {
-            if (totalPage <= page + 1) return
-            setPage(page + 1)
-          }}
-          className={styles.pagingItem}>下一页</div>
-      </div>
-    )
-  }
   return (
     <Layout location={location} title={siteTitle}>
-      {/* <SEO title="M ~" /> */}
+      {renderSearch()}
       {renderPage()}
-      {renderPaging()}
-    </Layout>
+    </Layout >
   )
 }
 
 export default BlogIndex
-
 export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
         title
+      }
+    }
+    allDirectory(filter: {name: {nin: ["blog","assets"]}}) {
+      nodes {
+        absolutePath
+        name
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
@@ -147,6 +135,11 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+          }
+          parent {
+            ... on File {
+              relativeDirectory
+            }
           }
         }
       }

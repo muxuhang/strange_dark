@@ -1,5 +1,7 @@
 import Typography from "typography"
 import Wordpress2016 from "typography-theme-wordpress-2016"
+import 'antd/dist/antd.css';
+import './main.module.css'
 
 Wordpress2016.overrideThemeStyles = () => {
   return {
