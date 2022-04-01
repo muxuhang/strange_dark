@@ -6,12 +6,12 @@ import { rhythm } from "../utils/typography"
 
 import styles from './index.module.css'
 
-const BlogIndex = ({ data, location }) => {
+const BlogIndex = (props) => {
+  const { data, location } = props
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
   const [list, setList] = useState([])
   if (typeof window !== 'undefined') {
-    console.log(document);
     var hm = document.createElement("script");
     hm.src = "https://s9.cnzz.com/z_stat.php?id=1278835659&web_id=1278835659";
     var s = document.getElementsByTagName("script")[0];
@@ -20,10 +20,10 @@ const BlogIndex = ({ data, location }) => {
   const [page, setPage] = useState(0)
   const length = 5
   useEffect(() => {
+    console.log(props)
     setList(posts.slice(page * length, (page + 1) * length))
   }, [page])
   const renderPage = () => {
-    console.log('111', page, list);
     return (
       <>
         {list.map(({ node }) => {
@@ -59,6 +59,7 @@ const BlogIndex = ({ data, location }) => {
 
   const renderPaging = () => {
     let totalPage = Math.ceil(posts.length / length)
+    console.log('totalPage', totalPage)
     let arr = []
     for (let i = 0; i < totalPage; i++) {
       arr.push(i)
@@ -102,8 +103,8 @@ const BlogIndex = ({ data, location }) => {
                 {index + 1}
               </div>
             )
-          } else if (page+1===index||index===6) {
-            return <div style={{lineHeight:'2rem'}}>...</div>
+          } else if (page + 1 === index || index === 6) {
+            return <div style={{ lineHeight: '2rem' }}>...</div>
           } else {
             return null
           }
@@ -119,7 +120,7 @@ const BlogIndex = ({ data, location }) => {
   }
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="M ~" />
+      {/* <SEO title="M ~" /> */}
       {renderPage()}
       {renderPaging()}
     </Layout>
