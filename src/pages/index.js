@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import { rhythm } from "../utils/typography"
-
 import styles from './index.module.css'
 import { Input, Pagination, Select } from "antd"
 
@@ -19,7 +17,7 @@ const BlogIndex = (props) => {
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   }
-  const [page, setPage] = useState(1)
+  const [current, setCurrent] = useState(1)
   const [search, setSearch] = useState('')
   const pageSize = 7
   useEffect(() => {
@@ -31,46 +29,71 @@ const BlogIndex = (props) => {
   }, [search])
   const [classify, setClassify] = useState('')
   useEffect(() => {
+    setCurrent(1)
     const result = posts.filter(e => {
       return e.node.parent.relativeDirectory === classify || classify == ''
     })
     setTotalList(result)
   }, [classify])
   useEffect(() => {
-    const result = totalList.slice((page - 1) * pageSize, (page) * pageSize)
+    const result = totalList.slice((current - 1) * pageSize, (current) * pageSize)
     setList(result)
-  }, [page, totalList])
+  }, [current, totalList])
+
+  const [scrollTop, setScrollTop] = useState(0)
+  useEffect(() => {
+    window.addEventListener('scroll', (e) => {
+      const scrollTop = document.documentElement.scrollTop
+      setScrollTop(scrollTop)
+    })
+    const local = localStorage.getItem('current')
+    if (local != 1) {
+      setCurrent(parseInt(local) || 1)
+    }
+    const local1 = localStorage.getItem('classify')
+    if (local1) {
+      setClassify(local1 || '')
+    }
+  }, [])
+  useEffect(() => {
+    localStorage.setItem('current', current.toString())
+  }, [current])
+  useEffect(() => {
+    localStorage.setItem('classify', classify.toString())
+  }, [classify])
   const renderSearch = () => {
     return (
-      <div className={styles.search_box}>
-        <Input
-          style={{ width: '300px' }}
-          placeholder="搜索"
-          onKeyDown={e => {
-            console.log(e.target.value)
-            if (e.keyCode === 13) {
-              setSearch(e.target.value)
-            }
-            if (e.target.value === '') setSearch('')
-          }}
-        ></Input>
-        <Select
-          placeholder='分类'
-          value={classify}
-          style={{ marginLeft: 10, minWidth: 100 }}
-          onChange={(e) => setClassify(e)}>
-          <Select.Option value={''}>全部分类</Select.Option>
-          {directories.map((item, index) => (
-            <Select.Option value={item.name} key={index}>{item.name}</Select.Option>
-          ))}
-        </Select>
-        <div style={{ flex: 1 }}></div>
-        <Pagination current={page}
-          pageSize={pageSize}
-          total={totalList.length}
-          onChange={e => setPage(e)} />
+      <div>
+        <div className={styles.search_box} style={
+          scrollTop > 80 ? {
+            position: 'fixed',
+            backgroundColor: 'rgba(255,255,255,0.9)',
+            padding: "15px 0",
+            top: 0
+          } : {
+            position: 'absolute',
+          }}>
+          <Input
+            style={{ maxWidth: '300px', flex: 1 }}
+            placeholder="搜索"
+            onKeyUp={e => {
+              if (e.keyCode === 13) setSearch(e.target.value)
+              if (e.target.value === '') setSearch('')
+            }}
+          ></Input>
+          <Select
+            placeholder='分类'
+            value={classify}
+            style={{ marginLeft: 10, minWidth: 100 }}
+            onChange={(e) => setClassify(e)}>
+            <Select.Option value={''}>全部分类</Select.Option>
+            {directories.map((item, index) => (
+              <Select.Option value={item.name} key={index}>{item.name}</Select.Option>
+            ))}
+          </Select>
+        </div>
+        <div style={{ height: '60px' }}></div>
       </div>
-
     )
   }
   const renderPage = () => {
@@ -106,6 +129,12 @@ const BlogIndex = (props) => {
     <Layout location={location} title={siteTitle}>
       {renderSearch()}
       {renderPage()}
+      <Pagination
+        style={{ margin: '10px 0' }}
+        current={current}
+        pageSize={pageSize}
+        total={totalList.length}
+        onChange={e => setCurrent(e)} />
     </Layout >
   )
 }
@@ -118,7 +147,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allDirectory(filter: {name: {nin: ["blog","assets"]}}) {
+    allDirectory(filter: {name: {nin: ["blog","assets","images","files"]}}) {
       nodes {
         absolutePath
         name

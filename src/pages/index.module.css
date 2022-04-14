@@ -1,16 +1,27 @@
-.search_box{
+.search_box {
   display: flex;
   flex-direction: row;
+  padding: 15px 0;
+  width: 96%;
+  max-width: 1200px;
+  margin: auto;
   margin-bottom: 20px;
+  border-bottom: 1px solid #f1f1f1;
 }
-.home_box h3{
+
+.home_box h3 {
   line-height: 80px;
 }
 
-.list_item{
+.list_item {
   padding-top: 1rem;
   border-bottom: 1px solid #f1f1f1;
 }
-.list_item:last-child{
+
+.list_item:last-child {
   border-bottom: none;
+}
+
+img {
+  /* display: inline-block; */
 }

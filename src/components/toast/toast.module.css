@@ -1,0 +1,62 @@
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 96%;
+  max-width: 400px;
+  padding: 10px 20px;
+  background-color: #85a5ff;
+  box-shadow: 1px 2px 1px -1px #85a5ff;
+  border-radius: 5px;
+  overflow: hidden;
+  color: #ffffff;
+  padding-right: 40px;
+  line-height: 24px;
+}
+
+.error {
+  background-color: #f5222d;
+  box-shadow: 1px 2px 1px -1px #f5222d;
+}
+
+.success {
+  background-color: #52c41a;
+  box-shadow: 1px 2px 1px -1px #52c41a;
+}
+
+.info {}
+
+.warn {
+  background-color: #ffa940;
+  box-shadow: 1px 2px 1px -1px #ffa940;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer;
+}
+
+.closeIcon {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #ffffff;
+  transform: rotate(45deg);
+}
+
+.closeIcon::after {
+  content: ' ';
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #ffffff;
+  transform: rotate(-90deg);
+}
