@@ -26,8 +26,7 @@ if (typeof window !== 'undefined' && window.Quill) {
 // katex语法转生成图片(完成)
 // 图片文字同时复制，或者多图片复制
 const QuillDemo = () => {
-  if (typeof window === 'undefined') return <></>
-  if (typeof window === 'undefined' && !window.Quill) return <></>
+  if (typeof window === 'undefined' || !window.Quill) return <></>
   const quillRef = useRef()
   const readRef = useRef()
   const [content, setContent] = useState('')
