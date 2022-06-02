@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
-import Layout from "../components/layout"
+import Layout from "./../layout"
 import 'react-quill/dist/quill.snow.css';
 import katex from "katex";
 import 'katex/dist/katex.css';
-import './../components/quill/quill.css';
+import './quill.css';
 import html2canvas from 'html2canvas'
 import { Button, Empty, Input, Modal } from "antd";
-import { ImageExtend, QuillWatch } from "../components/quill/ImageExtend";
+import { ImageExtend, QuillWatch } from "./ImageExtend";
 let ImageResize, ReactQuill, Quill
 if (typeof window !== 'undefined') {
   ReactQuill = require('react-quill');
@@ -27,11 +27,12 @@ if (typeof window !== 'undefined' && window.Quill) {
 // 图片文字同时复制，或者多图片复制
 // 添加选项
 // 添加答案
-const QuillDemo = () => {
+const MQuill = (props) => {
+  const { style, data, setData, container, disabled, theme = 'snow' } = props
   if (typeof window === 'undefined' || !window.Quill) return <></>
   const quillRef = useRef()
   const readRef = useRef()
-  const [content, setContent] = useState('')
+  const [content, setContent] = useState(data)
   const [visible, setVisible] = useState(false)
   const [latex, setLatex] = useState('')
   useEffect(() => {
@@ -39,15 +40,14 @@ const QuillDemo = () => {
   }, [])
   const modules = useMemo(() => ({
     toolbar: {
-      container: [
+      container: container ? container : [
         ['bold', 'italic', 'underline', 'strike'],
         // ['blockquote', 'code-block'],
         [{ 'header': 1 }, { 'header': 2 }],
         [{ 'script': 'sub' }, { 'script': 'super' }],
         [{ 'color': [] }],
         [{ 'align': [] }],
-        ['image', 'formula'],
-        ['print'],
+        ['image', 'formula']
       ],
       handlers: {
         image: () => {  // 劫持原来的图片点击按钮事件
@@ -129,23 +129,6 @@ const QuillDemo = () => {
       setVisible(false)
     }
   }
-  const _fetchLatex = async (latex) => {
-    if (!latex) return
-    try {
-      const res = await fetch('http://0.0.0.0:3001/tex2mathml', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          tex: latex
-        })
-      })
-      const data = await res.json()
-    } catch (error) {
-
-    }
-  }
   const renderFormula = () => {
     return <Modal
       title="Latex"
@@ -168,24 +151,29 @@ const QuillDemo = () => {
           ref={readRef}
           id='read_latex'
           readOnly
-          onChange={setContent}
         ></ReactQuill>}
     </Modal>
   }
   return (
-    <Layout title={'QuillDemo'}>
+    <div style={style}>
       {renderFormula()}
       <ReactQuill
-        theme="snow"
+        theme={theme}
         ref={quillRef}
         id="quill"
-        style={{ height: 'calc(100vh - 202px)', marginTop: 15 }}
-        onChange={setContent}
+        style={style}
+        readOnly={disabled}
+        onChange={(e) => {
+          setContent(e)
+          setData && setData(e)
+        }}
         modules={modules}
+        value={content}
+        placeholder='请输入'
       >
       </ReactQuill>
-    </Layout >
+    </div>
   )
 }
 
-export default QuillDemo
+export default MQuill

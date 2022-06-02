@@ -138,7 +138,6 @@ const BlogIndex = (props) => {
     </Layout >
   )
 }
-
 export default BlogIndex
 export const pageQuery = graphql`
   query {
