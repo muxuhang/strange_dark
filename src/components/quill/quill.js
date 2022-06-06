@@ -1,11 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
-import Layout from "./../layout"
 import 'react-quill/dist/quill.snow.css';
 import katex from "katex";
 import 'katex/dist/katex.css';
 import './quill.css';
 import html2canvas from 'html2canvas'
-import { Button, Empty, Input, Modal } from "antd";
+import { Empty, Input, Modal } from "antd";
 import { ImageExtend, QuillWatch } from "./ImageExtend";
 let ImageResize, ReactQuill, Quill
 if (typeof window !== 'undefined') {
@@ -22,25 +21,29 @@ if (typeof window !== 'undefined' && window.Quill) {
 // 字体 加粗、斜体、下划线(完成)
 // 图片 可编辑大小(完成)
 // 图片 可复制添加(完成)
+// 图片 可同时复制多张图片()
 // katex语法(完成)
 // katex语法转生成图片(完成)
-// 图片文字同时复制，或者多图片复制
+// 图片文字同时复制
+// 或者多图片复制
 // 添加选项
 // 添加答案
 const MQuill = (props) => {
   const { style, data, setData, container, disabled, theme = 'snow' } = props
+  window.katex = katex
   if (typeof window === 'undefined' || !window.Quill) return <></>
   const quillRef = useRef()
   const readRef = useRef()
   const [content, setContent] = useState(data)
   const [visible, setVisible] = useState(false)
   const [latex, setLatex] = useState('')
-  useEffect(() => {
-    window.katex = katex
-  }, [])
   const modules = useMemo(() => ({
+    history: {
+      delay: 1000
+    },
     toolbar: {
       container: container ? container : [
+        ['radio'],
         ['bold', 'italic', 'underline', 'strike'],
         // ['blockquote', 'code-block'],
         [{ 'header': 1 }, { 'header': 2 }],
@@ -72,6 +75,10 @@ const MQuill = (props) => {
           if (navigator.userAgent.indexOf("MSIE") > 0) {
             document.body.removeChild(iframe);
           }
+        },
+        radio: (e) => {
+          console.log(e);
+          insertRadio()
         }
       }
     },
@@ -87,9 +94,23 @@ const MQuill = (props) => {
     const result = readQuill.insertEmbed(0, 'formula', latex);
     readQuill.setContents(result)
   }
+  useEffect(() => {
+    setTimeout(() => {
+      insertRadio()
+    }, 2000);
+  }, [])
+  const insertRadio = () => {
+    // ----------  //
+    if (disabled) return
+    const radio = document.querySelector('.ql-radio')
+    radio.innerHTML = '<p>pppp</p>'
+  }
   const _saveLatexToImage = async () => {
     const dom = document.querySelector("#read_latex .ql-editor p")
-    html2canvas(dom, {}).then(canvas => {
+    html2canvas(dom, {
+      scale: 1,
+      logging: true,
+    }).then(canvas => {
       const oldCanvas = document.getElementById('read_canvas')
       if (oldCanvas) {
         oldCanvas.parentElement.removeChild(oldCanvas)
@@ -100,6 +121,8 @@ const MQuill = (props) => {
       if (oldImage) {
         oldImage.parentElement.removeChild(oldImage)
       }
+      var ctx = canvas.getContext('2d')
+      console.log(ctx);
       var image = new Image();
       image.src = canvas.toDataURL("image/png");
       image.id = 'read_image'

@@ -60,13 +60,39 @@ const Question = () => {
     setForm(res)
   }
   const onSave = () => {
-    if (form._id) return
+    const api = form._id ?
+      '/questions/update/' :
+      '/questions/'
     network({
       method: "POST",
-      api: '/questions/',
+      api: api,
       data: form
     }).then((res) => {
+      getQustions()
       setOpen(false)
+    })
+  }
+  const deleteItem = (id) => {
+    Modal.error({
+      title: '确认删除?',
+      content: '删除后无法恢复',
+      okText: "确认",
+      maskClosable: true,
+      onOk: () => {
+        onDelete(id)
+      }
+    })
+  }
+  const onDelete = (id) => {
+    if (!id) return
+    network({
+      method: "DELETE",
+      api: '/questions/',
+      data: {
+        id: id
+      }
+    }).then((res) => {
+      getQustions()
     })
   }
   const [open, setOpen] = useState(false)
@@ -97,7 +123,7 @@ const Question = () => {
         </Col>
       </Row>
       <MQuill
-        style={{ height: 300 }}
+        style={{ height: 320 }}
         data={form.question}
         setData={e => onChange(e, 'question')}></MQuill>
       <Row gutter={12}>
@@ -113,7 +139,7 @@ const Question = () => {
                   [{ 'script': 'sub' }, { 'script': 'super' }],
                   ['image', 'formula']
                 ]}
-                data={form.question}
+                data={item.option}
                 setData={e => {
                   const options = form.options
                   options.options[index].option = e
@@ -129,19 +155,29 @@ const Question = () => {
       {questions.map((item, index) => <Card
         style={{
           marginTop: 10,
-          cursor: 'pointer',
-          position: 'relative'
-        }}
-        onClick={async () => {
-          await setForm(item)
-          setOpen(true)
         }}
         key={index.toString()}>
-        <MQuill
-          theme='bubble'
-          data={item.question || '空数据'}
-          disabled></MQuill>
-        <div style={{ position: 'absolute', zIndex: 1, height: '100%', width: '100%', top: 0 }}></div>
+        <Row style={{ padding: 5 }}>
+          <Col
+            flex={1}
+            style={{
+              cursor: 'pointer',
+              position: 'relative'
+            }}
+            onClick={async () => {
+              await setForm(item)
+              setOpen(true)
+            }}>
+            <MQuill
+              theme='bubble'
+              data={item.question || '空数据'}
+              disabled></MQuill>
+            <div style={{ position: 'absolute', zIndex: 1, height: '100%', width: '100%', top: 0 }}></div>
+          </Col>
+          <Col>
+            <Button size="small" type='link' danger onClick={() => deleteItem(item._id)}>删除</Button>
+          </Col>
+        </Row>
       </Card>)}
     </div>
   }
