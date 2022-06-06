@@ -95,9 +95,7 @@ const MQuill = (props) => {
     readQuill.setContents(result)
   }
   useEffect(() => {
-    setTimeout(() => {
-      insertRadio()
-    }, 2000);
+    insertRadio()
   }, [])
   const insertRadio = () => {
     // ----------  //
