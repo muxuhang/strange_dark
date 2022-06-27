@@ -4,10 +4,9 @@ import 'react-quill/dist/quill.snow.css';
 import 'katex/dist/katex.css';
 import './../components/quill/quill.css';
 import MQuill from "../components/quill/quill";
-import { Button, Card, Col, Divider, Grid, Modal, Row, Select, Typography } from "antd";
-import { Option } from "antd/lib/mentions";
+import { Button, Card, Col, Divider, Grid, List, Modal, Row, Select, Skeleton, Typography } from "antd";
 import network from "../utils/network";
-const { Title } = Typography;
+import Search from "antd/lib/input/Search";
 const defaultForm = {
   question: '',
   question_type: 'radio',
@@ -26,19 +25,36 @@ const defaultForm = {
   }
 }
 const Question = () => {
+  const [loading, setLoading] = useState(false)
+  const [count, setCount] = useState(0)
+  const [current, setCurrent] = useState(1)
+  const pageSize = 10
   const [form, setForm] = useState(defaultForm)
   const [questions, setQuestions] = useState([])
   const [types, setTypes] = useState([])
+  const [other, setOther] = useState({})
   useEffect(() => {
-    getQustions()
+    getQuestions((current - 1) * pageSize)
     getOptions()
-  }, [])
-  const getQustions = () => {
+  }, [current])
+  const getQuestions = (offset) => {
+    if (loading) return
+    // 刷新、删除后刷新等操作后，limit为questions的长度
+    setLoading(true)
     network({
-      api: '/questions/'
+      api: '/questions/',
+      data: {
+        ...other,
+        limit: pageSize,
+        offset: offset.toString()
+      }
     }).then((res) => {
       if (res.success) {
-        setQuestions(res.data)
+        setQuestions(res.data.results)
+        setCount(res.data.count)
+        setTimeout(() => {
+          setLoading(false)
+        }, 300);
       }
     })
   }
@@ -68,7 +84,7 @@ const Question = () => {
       api: api,
       data: form
     }).then((res) => {
-      getQustions()
+      getQuestions(0)
       setOpen(false)
     })
   }
@@ -92,7 +108,7 @@ const Question = () => {
         id: id
       }
     }).then((res) => {
-      getQustions()
+      getQuestions(0)
     })
   }
   const [open, setOpen] = useState(false)
@@ -135,11 +151,17 @@ const Question = () => {
               <MQuill
                 style={{ height: 160, overflow: "scroll" }}
                 container={[
-                  ['bold', 'italic', 'underline', 'strike'],
+                  ['radio', 'bold', 'italic', 'underline', 'strike'],
                   [{ 'script': 'sub' }, { 'script': 'super' }],
                   ['image', 'formula']
                 ]}
                 data={item.option}
+                active={item.isRight}
+                setRightOption={() => {
+                  const options = form.options
+                  options.options[index].isRight = !item.isRight
+                  onChange(options, 'options')
+                }}
                 setData={e => {
                   const options = form.options
                   options.options[index].option = e
@@ -150,42 +172,68 @@ const Question = () => {
       </Row>
     </Modal>
   }
-  const questionList = () => {
-    return <div className="read_quill">
-      {questions.map((item, index) => <Card
+  const questionItem = (item) => <Card
+    style={{
+      marginTop: 10,
+    }}>
+    {!loading ? <Row style={{ padding: 5 }}>
+      <Col
+        flex={1}
         style={{
-          marginTop: 10,
+          cursor: 'pointer',
+          position: 'relative'
         }}
-        key={index.toString()}>
-        <Row style={{ padding: 5 }}>
-          <Col
-            flex={1}
-            style={{
-              cursor: 'pointer',
-              position: 'relative'
-            }}
-            onClick={async () => {
-              await setForm(item)
-              setOpen(true)
-            }}>
-            <MQuill
-              theme='bubble'
-              data={item.question || '空数据'}
-              disabled></MQuill>
-            <div style={{ position: 'absolute', zIndex: 1, height: '100%', width: '100%', top: 0 }}></div>
-          </Col>
-          <Col>
-            <Button size="small" type='link' danger onClick={() => deleteItem(item._id)}>删除</Button>
-          </Col>
-        </Row>
-      </Card>)}
+        onClick={async () => {
+          await setForm(item)
+          setOpen(true)
+        }}>
+        <MQuill
+          theme='bubble'
+          data={item.question || '空数据'}
+          disabled></MQuill>
+        <div style={{ position: 'absolute', zIndex: 1, height: '100%', width: '100%', top: 0 }}></div>
+      </Col>
+      <Col>
+        <Button size="small" type='link' danger onClick={() => deleteItem(item._id)}>删除</Button>
+      </Col>
+    </Row> : <Skeleton active title paragraph={false} style={{ padding: "12px 15px" }} />}
+  </Card>
+  const questionList = () => {
+    return <div
+      id="scrollableDiv"
+      className="read_quill"
+      style={{
+        height: 'calc(100vh - 192px)',
+        overflow: 'auto',
+      }}
+    >
+      <List
+        dataSource={questions}
+        renderItem={questionItem}
+        pagination={{
+          total: count,
+          current: current,
+          pageSize: pageSize,
+          onChange: (e) => { setCurrent(e) }
+        }}
+      />
     </div>
   }
   return (
     <Layout title={'question'}>
       {form ? questionModal() : null}
-      <Row>
-        <Col flex={1}></Col>
+      <Row style={{ height: 40, alignItems: 'center' }}>
+        <Col flex={1}>
+          <Search placeholder="请输入"
+            style={{ maxWidth: 300 }}
+            onSearch={async (e) => {
+              await setOther({
+                ...other,
+                search: e
+              })
+              getQuestions((current - 1) * pageSize)
+            }}></Search>
+        </Col>
         <Col><Button onClick={async () => {
           await setForm(defaultForm)
           setOpen(true)

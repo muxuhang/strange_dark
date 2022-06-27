@@ -1,6 +1,7 @@
 import Cookies from "js-cookie"
 
-const apiUrl = 'http://127.0.0.1:3002/api'
+let apiUrl = 'http://127.0.0.1:8088/api'
+// apiUrl = 'http://81.70.147.104:8888/api'
 const csrftoken = Cookies.get('csrftoken')
 const network = async ({
   method = 'GET',
@@ -50,6 +51,9 @@ const network = async ({
     .then((res) => res.json())
     .then((res) => {
       return ({ success: true, data: res })
+    })
+    .catch(err => {
+      return ({ success: false, data: '网络错误' })
     })
 }
 

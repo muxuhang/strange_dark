@@ -1,11 +1,12 @@
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react"
 import 'react-quill/dist/quill.snow.css';
 import katex from "katex";
 import 'katex/dist/katex.css';
 import './quill.css';
 import html2canvas from 'html2canvas'
-import { Empty, Input, Modal } from "antd";
+import { Checkbox, Empty, Input, Modal } from "antd";
 import { ImageExtend, QuillWatch } from "./ImageExtend";
+import htmInsert from './htmInsert'
 let ImageResize, ReactQuill, Quill
 if (typeof window !== 'undefined') {
   ReactQuill = require('react-quill');
@@ -16,6 +17,7 @@ if (typeof window !== 'undefined' && window.Quill) {
   ImageResize = require("quill-image-resize-module").default;
   Quill.register('modules/imageResize', ImageResize);
   Quill.register('modules/imageExtend', ImageExtend);
+  htmInsert(Quill)
 }
 // 固定样式 大标题、小标题、分类标题、题目，内容(完成)
 // 字体 加粗、斜体、下划线(完成)
@@ -28,8 +30,8 @@ if (typeof window !== 'undefined' && window.Quill) {
 // 或者多图片复制
 // 添加选项
 // 添加答案
-const MQuill = (props) => {
-  const { style, data, setData, container, disabled, theme = 'snow' } = props
+const MQuill = forwardRef((props, ref) => {
+  const { style, data, setData, container, disabled, active, setRightOption, onSelect, theme = 'snow' } = props
   window.katex = katex
   if (typeof window === 'undefined' || !window.Quill) return <></>
   const quillRef = useRef()
@@ -37,13 +39,15 @@ const MQuill = (props) => {
   const [content, setContent] = useState(data)
   const [visible, setVisible] = useState(false)
   const [latex, setLatex] = useState('')
+  useImperativeHandle(ref, () => ({
+    quill: quillRef.current.editor
+  }))
   const modules = useMemo(() => ({
     history: {
       delay: 1000
     },
     toolbar: {
       container: container ? container : [
-        ['radio'],
         ['bold', 'italic', 'underline', 'strike'],
         // ['blockquote', 'code-block'],
         [{ 'header': 1 }, { 'header': 2 }],
@@ -75,10 +79,6 @@ const MQuill = (props) => {
           if (navigator.userAgent.indexOf("MSIE") > 0) {
             document.body.removeChild(iframe);
           }
-        },
-        radio: (e) => {
-          console.log(e);
-          insertRadio()
         }
       }
     },
@@ -93,15 +93,6 @@ const MQuill = (props) => {
     const readQuill = readRef.current.editor
     const result = readQuill.insertEmbed(0, 'formula', latex);
     readQuill.setContents(result)
-  }
-  useEffect(() => {
-    insertRadio()
-  }, [])
-  const insertRadio = () => {
-    // ----------  //
-    if (disabled) return
-    const radio = document.querySelector('.ql-radio')
-    radio.innerHTML = '<p>pppp</p>'
   }
   const _saveLatexToImage = async () => {
     const dom = document.querySelector("#read_latex .ql-editor p")
@@ -120,7 +111,6 @@ const MQuill = (props) => {
         oldImage.parentElement.removeChild(oldImage)
       }
       var ctx = canvas.getContext('2d')
-      console.log(ctx);
       var image = new Image();
       image.src = canvas.toDataURL("image/png");
       image.id = 'read_image'
@@ -175,9 +165,30 @@ const MQuill = (props) => {
         ></ReactQuill>}
     </Modal>
   }
+  const hasContainer = (e) => {
+    let result = false
+    e.map((item) => {
+      item.map((row) => {
+        if (row === 'radio') result = true
+      })
+    })
+    return result
+  }
   return (
-    <div style={style}>
+    <div style={{ position: 'relative', ...style }}>
       {renderFormula()}
+      {!disabled && container && hasContainer(container) ? <div style={{
+        position: 'absolute', height: 24, width: 28,
+        left: 10, top: 9, display: "flex",
+        justifyContent: 'center',
+        alignItems: 'center',
+        cursor: 'pointer',
+      }}>
+        <Checkbox
+          checked={active}
+          onChange={setRightOption && setRightOption}
+          style={{ cursor: 'pointer' }}></Checkbox>
+      </div> : null}
       <ReactQuill
         theme={theme}
         ref={quillRef}
@@ -195,6 +206,6 @@ const MQuill = (props) => {
       </ReactQuill>
     </div>
   )
-}
+})
 
 export default MQuill
