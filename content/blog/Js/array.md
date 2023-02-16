@@ -68,3 +68,15 @@ const obj = {
 const result = Object.keys(obj).map(item=>obj[item])
 console.log(result) //[{ title: "title1", id: 1 }, { title: "title2", id: 2 }]
 ```
+
+#### 判断一个数组中含有另一个数组的某一项
+
+```js
+const list1 = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2]
+const list2 = [2, 3, 4, 10]
+const list3 = [10, 12]
+const result1 = list1.find(e=>list2.includes(e))
+console.log(result1) //[2, 3, 4]
+const result2 = list1.find(e=>list3.includes(e))
+console.log(result2) //undefined
+```

@@ -55,7 +55,6 @@ export class ImageExtend {
 			}
 			if (item && item.kind === 'file' && item.type.match(/^image\//i)) {
 				this.file = item.getAsFile()
-				console.log(this.file)
 				let self = this
 				// 如果图片限制大小
 				if (self.config.size &&
@@ -222,7 +221,6 @@ export const QuillWatch = {
 	},
 	emit: function (activeId) {  // 事件发射触发
 		imgHandler()
-		console.log(this.watcher, activeId)
 		this.active = this.watcher[activeId]
 	}
 }
@@ -240,7 +238,6 @@ export function imgHandler() {
 		// 监听选择文件
 		fileInput.addEventListener('change', function () {
 			let self = QuillWatch.active
-			console.log(self)
 			self.file = fileInput.files[0]
 			fileInput.value = ''
 			// 如果图片限制大小

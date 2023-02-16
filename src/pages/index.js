@@ -3,7 +3,6 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import styles from './index.module.css'
 import { Input, Pagination, Select } from "antd"
-
 const BlogIndex = (props) => {
   const { data, location } = props
   const siteTitle = data.site.siteMetadata.title

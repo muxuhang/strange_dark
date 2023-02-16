@@ -4,7 +4,7 @@ const Footer = (props) => {
   return (
     <div className={styles.footer}>
       <div className={styles.container}>
-        <a className={styles.copyname} href='http://beian.miit.gov.cn/'>鲁ICP备19017488号-1</a>
+        <a className={styles.copyname} href='http://beian.miit.gov.cn/'>鲁ICP备2022023245号-1</a>
       </div>
     </div>
   )

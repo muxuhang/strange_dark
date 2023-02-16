@@ -1,5 +1,3 @@
-import React, { useEffect, useRef, useState } from "react"
-import { Modal } from "antd"
 
 const _imageHandler = (quillRef, isUpload = false) => {
   const quillEditor = quillRef.current.getEditor()

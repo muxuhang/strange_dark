@@ -31,9 +31,19 @@ if (typeof window !== 'undefined' && window.Quill) {
 // 添加选项
 // 添加答案
 const MQuill = forwardRef((props, ref) => {
-  const { style, data, setData, container, disabled, active, setRightOption, onSelect, theme = 'snow' } = props
-  window.katex = katex
+  const {
+    style,
+    data = null,
+    setData,
+    container,
+    disabled,
+    active,
+    setRightOption,
+    onSelect,
+    theme = 'snow'
+  } = props
   if (typeof window === 'undefined' || !window.Quill) return <></>
+  window.katex = katex
   const quillRef = useRef()
   const readRef = useRef()
   const [content, setContent] = useState(data)
@@ -54,7 +64,8 @@ const MQuill = forwardRef((props, ref) => {
         [{ 'script': 'sub' }, { 'script': 'super' }],
         [{ 'color': [] }],
         [{ 'align': [] }],
-        ['image', 'formula']
+        ['image', 'formula'],
+        ['print'],
       ],
       handlers: {
         image: () => {  // 劫持原来的图片点击按钮事件
@@ -147,22 +158,32 @@ const MQuill = forwardRef((props, ref) => {
       onOk={_saveLatexToImage}
       okText='保存为图片'
       cancelText='保存为公式'
-      onCancel={_saveLatex}
+      onCancel={(e) => {
+        if (e.currentTarget.innerText === '保存为公式') {
+          _saveLatex()
+        } else {
+          setVisible(false)
+        }
+      }}
     >
       <Input
         value={latex}
         placeholder="latex"
         style={{ marginBottom: 10 }}
-        onChange={(e) => setLatex(e.target.value)}></Input>
+        onChange={(e) => {
+          setLatex(e.target.value)
+        }}></Input>
       {!latex ? <Empty
         description='latex'
         imageStyle={{ height: 50 }}></Empty> :
-        <ReactQuill
-          theme="bubble"
-          ref={readRef}
-          id='read_latex'
-          readOnly
-        ></ReactQuill>}
+        <div style={{ fontSize: 100 }}>
+          <ReactQuill
+            theme="bubble"
+            ref={readRef}
+            id='read_latex'
+            readOnly
+          ></ReactQuill>
+        </div>}
     </Modal>
   }
   const hasContainer = (e) => {

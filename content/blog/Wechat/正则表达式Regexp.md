@@ -1,9 +1,9 @@
-
 ---
 title: RegExp
 date: "2022-05-23 15:30"
 description: "小程序 空白页面 只显示底部导航栏 正则表达式 regexp"
 ---
+
 ### 小程序对正则表达式支持
 ```js
   let regExp = '(content)/g'
