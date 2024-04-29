@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[28],{"0i+p":function(n,t,o){"use strict";o.r(t);var c=o("q1tI"),e=o.n(c),i=o("Bl7J");o("91UR"),o("fNIL"),o("i+YI");t.default=function(){Object(c.useEffect)((function(){n()}),[]);var n=function(){fetch("/content/blog/数学.docx").then((function(n){console.log(n)}))};return e.a.createElement(i.a,{title:"WordHtml"})}},"91UR":function(n,t,o){},fNIL:function(n,t,o){},"i+YI":function(n,t,o){}}]);
+//# sourceMappingURL=component---src-pages-wordhtml-js-48c49957b0c32a294525.js.map

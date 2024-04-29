@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[26],{ij7m:function(e,t,a){"use strict";a.r(t);var n=a("q1tI"),l=a.n(n),i=a("Bl7J"),c=a("6jmG");t.default=function(){return l.a.createElement(i.a,{title:"QuillDemo"},l.a.createElement(c.a,{data:null,style:{height:"calc(100vh - 202px)",marginTop:15}}))}}}]);
+//# sourceMappingURL=component---src-pages-quill-demo-js-8be54fec225961e6ee5c.js.map
