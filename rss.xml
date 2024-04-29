@@ -1,7 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>http://www.cacti.cc</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 29 Apr 2024 09:59:46 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><link>http://www.cacti.cc/ReactNative/expo 打包android/</link><guid isPermaLink="false">http://www.cacti.cc/ReactNative/expo 打包android/</guid><content:encoded></content:encoded></item><item><title><![CDATA[No title]]></title><link>http://www.cacti.cc/ReactNative/expo 打包ios/</link><guid isPermaLink="false">http://www.cacti.cc/ReactNative/expo 打包ios/</guid><content:encoded></content:encoded></item><item><title><![CDATA[echarts pie 饼图]]></title><description><![CDATA[效果对比 适配前
-适配后 html]]></description><link>http://www.cacti.cc/Echarts/echarts南丁格尔饼图适配/</link><guid isPermaLink="false">http://www.cacti.cc/Echarts/echarts南丁格尔饼图适配/</guid><pubDate>Mon, 29 Apr 2024 04:50:00 GMT</pubDate><content:encoded>&lt;h4&gt;效果对比&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/images/pie.png&quot; alt=&quot;适配前&quot; title=&quot;Magic Gardens&quot;&gt;
-&lt;img src=&quot;../../assets/images/pie1.png&quot; alt=&quot;适配后&quot; title=&quot;Magic Gardens&quot;&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>http://www.cacti.cc</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 29 Apr 2024 10:09:32 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><link>http://www.cacti.cc/ReactNative/expo 打包android/</link><guid isPermaLink="false">http://www.cacti.cc/ReactNative/expo 打包android/</guid><content:encoded></content:encoded></item><item><title><![CDATA[No title]]></title><link>http://www.cacti.cc/ReactNative/expo 打包ios/</link><guid isPermaLink="false">http://www.cacti.cc/ReactNative/expo 打包ios/</guid><content:encoded></content:encoded></item><item><title><![CDATA[echarts pie 饼图]]></title><description><![CDATA[效果对比 
+ html]]></description><link>http://www.cacti.cc/Echarts/echarts南丁格尔饼图适配/</link><guid isPermaLink="false">http://www.cacti.cc/Echarts/echarts南丁格尔饼图适配/</guid><pubDate>Mon, 29 Apr 2024 04:50:00 GMT</pubDate><content:encoded>&lt;h4&gt;效果对比&lt;/h4&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 497px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a139cd805885ffb59150ab81c2c9464f/fce5f/pie.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQFAgP/xAAXAQADAQAAAAAAAAAAAAAAAAAAAQID/9oADAMBAAIQAxAAAAHazbYINNO1VfBD9gz/xAAdEAACAQQDAAAAAAAAAAAAAAACAwEABBIhEBET/9oACAEBAAEFAiLqmMIWrPMGakxym3CfMq1HH//EABYRAQEBAAAAAAAAAAAAAAAAABECIP/aAAgBAwEBPwGwx//EABsRAQAABwAAAAAAAAAAAAAAAAEAAgMQERIi/9oACAECAQE/Aac3btCGb//EABoQAAIDAQEAAAAAAAAAAAAAAAABEBEhMYH/2gAIAQEABj8CMZcWunsYlH//xAAcEAEAAgMAAwAAAAAAAAAAAAABABEhMUEQUZH/2gAIAQEAAT8h1jceL8xzUIq09JscY/wEyDZcLRQj7haUvH//2gAMAwEAAgADAAAAEPsIvP/EABgRAQEAAwAAAAAAAAAAAAAAAAEAEBEx/9oACAEDAQE/EEAHYXUGP//EABgRAQADAQAAAAAAAAAAAAAAAAEAEDEh/9oACAECAQE/EHCxkIgYna//xAAdEAEAAgICAwAAAAAAAAAAAAABABEhMUFREHHB/9oACAEBAAE/EGePsvECyKVm9HEPI0dDCuxdDFlysPb1BJbZBOMHyV2WCwXogSQWrrx//9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;适配前&quot;
+        title=&quot;Magic Gardens&quot;
+        src=&quot;/static/a139cd805885ffb59150ab81c2c9464f/fce5f/pie.jpg&quot;
+        srcset=&quot;/static/a139cd805885ffb59150ab81c2c9464f/a80bd/pie.jpg 148w,
+/static/a139cd805885ffb59150ab81c2c9464f/1c91a/pie.jpg 295w,
+/static/a139cd805885ffb59150ab81c2c9464f/fce5f/pie.jpg 497w&quot;
+        sizes=&quot;(max-width: 497px) 100vw, 497px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 498px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f20366d44a554c353030137adb1181f5/4e442/pie1.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQFA//EABYBAQEBAAAAAAAAAAAAAAAAAAIDAf/aAAwDAQACEAMQAAAB2M22Ke6adY08SWVhr//EABsQAQACAgMAAAAAAAAAAAAAAAIAAQMRBCEj/9oACAEBAAEFAkosjOTGqYfVs7nHPm63KNbn/8QAFxEBAQEBAAAAAAAAAAAAAAAAARECIP/aAAgBAwEBPwHaSHH/xAAcEQACAAcAAAAAAAAAAAAAAAAAAQIDEBIhIjH/2gAIAQIBAT8BlRbu4ayPtP/EABkQAAMAAwAAAAAAAAAAAAAAAAABERAgIf/aAAgBAQAGPwKIfS4q1//EABwQAQADAAIDAAAAAAAAAAAAAAEAETEhURBBcf/aAAgBAQABPyGpgoD3PUNVrsivuO3bqPzeLbhUEgsX98f/2gAMAwEAAgADAAAAEKvH/P/EABgRAQADAQAAAAAAAAAAAAAAAAEAEBEx/9oACAEDAQE/EADpBciG1//EABkRAQACAwAAAAAAAAAAAAAAAAEAEBEhYf/aAAgBAgEBPxDmHUIQQGFf/8QAHRABAAMBAAIDAAAAAAAAAAAAAQARITFRcUFhwf/aAAgBAQABPxB1oK6zGypbUeoKSnPAyh9LZNiF3y9Qdhvg+sPyUVNjvyZAirXFkMKJ/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;适配后&quot;
+        title=&quot;Magic Gardens&quot;
+        src=&quot;/static/f20366d44a554c353030137adb1181f5/4e442/pie1.jpg&quot;
+        srcset=&quot;/static/f20366d44a554c353030137adb1181f5/a80bd/pie1.jpg 148w,
+/static/f20366d44a554c353030137adb1181f5/1c91a/pie1.jpg 295w,
+/static/f20366d44a554c353030137adb1181f5/4e442/pie1.jpg 498w&quot;
+        sizes=&quot;(max-width: 498px) 100vw, 498px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h4&gt;html&lt;/h4&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token doctype&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&quot;token doctype-tag&quot;&gt;DOCTYPE&lt;/span&gt; &lt;span class=&quot;token name&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;html&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
