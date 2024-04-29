@@ -5,3 +5,28 @@ a {
 li {
   margin-bottom: 0;
 }
+
+
+@font-face {
+  font-family: "GridConcreteDue";
+  src: url("../../content/assets/fonts/GridConcreteDue-1.ttf");
+}
+@font-face {
+  font-family: "Handwriting";
+  src: url("../../content/assets/fonts/handwriting-draft-free-version-1.ttf");
+}
+@font-face {
+  font-family: "KL1MonoCase";
+  src: url("../../content/assets/fonts/KL1MonoCase-1.ttf");
+}
+@font-face {
+  font-family: "DF";
+  src: url("../../content/assets/fonts/DF-Attitudes-1.ttf");
+}
+@font-face {
+  font-family: "PW";
+  src: url("../../content/assets/fonts/PWChristmastime-2.ttf");
+}
+.gridConcreteDue{
+  font-family: "PW";
+}
